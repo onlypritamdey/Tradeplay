@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade - NiftyPlay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-purple-700 p-4 shadow-lg text-white flex justify-between items-center">
+        <h1 class="text-2xl font-bold">NiftyPlay</h1>
+        <button onclick="logout()" class="bg-white text-purple-700 px-4 py-2 rounded hidden" id="logout-btn">Logout</button>
+    </nav>
+
+    <!-- Trading Section -->
+    <section class="p-6 text-center">
+        <h2 class="text-3xl font-bold text-purple-400">Trade Now</h2>
+        <div class="mt-6 bg-gray-800 p-4 rounded-lg">
+            <label class="block text-left text-gray-300 mb-2">Select Stock/Index:</label>
+            <select class="w-full p-3 rounded bg-gray-700 text-white">
+                <option>NIFTY 50</option>
+                <option>BANK NIFTY</option>
+                <option>SENSEX</option>
+            </select>
+
+            <label class="block text-left text-gray-300 mt-4 mb-2">Quantity:</label>
+            <input type="number" class="w-full p-3 rounded bg-gray-700 text-white" placeholder="Enter quantity">
+
+            <div class="flex justify-between mt-4">
+                <button class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-6 rounded shadow-lg">
+                    <i class="fas fa-arrow-up"></i> Buy
+                </button>
+                <button class="bg-red-600 hover:bg-red-500 text-white font-bold py-3 px-6 rounded shadow-lg">
+                    <i class="fas fa-arrow-down"></i> Sell
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fixed Bottom Navbar -->
+    <nav class="fixed bottom-0 left-0 w-full bg-gray-800 text-white flex justify-around p-4 border-t border-gray-700">
+        <a href="index.html" class="text-center">
+            <i class="fas fa-home text-2xl text-gray-300"></i>
+            <p class="text-sm text-gray-300">Home</p>
+        </a>
+        <a href="market.html" class="text-center">
+            <i class="fas fa-chart-line text-2xl text-gray-300"></i>
+            <p class="text-sm text-gray-300">Market</p>
+        </a>
+        <a href="trade.html" class="text-center">
+            <i class="fas fa-coins text-2xl text-purple-400"></i>
+            <p class="text-sm text-purple-400">Trade</p>
+        </a>
+        <a href="profile.html" class="text-center">
+            <i class="fas fa-user text-2xl text-gray-300"></i>
+            <p class="text-sm text-gray-300">Profile</p>
+        </a>
+    </nav>
+
+    <script>
+        // Check if user is logged in
+        function checkLogin() {
+            let user = localStorage.getItem("user");
+            if (!user) {
+                window.location.href = "login.html"; // Redirect to login
+            } else {
+                document.getElementById("logout-btn").classList.remove("hidden");
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("user");
+            window.location.href = "login.html";
+        }
+
+        // Run check on page load
+        checkLogin();
+    </script>
+
+</body>
+</html>
