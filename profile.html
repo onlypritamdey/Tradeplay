@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - NiftyPlay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
+</head>
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-purple-700 p-4 shadow-lg text-white flex justify-between items-center">
+        <h1 class="text-2xl font-bold">NiftyPlay</h1>
+        <button onclick="logout()" class="bg-white text-purple-700 px-4 py-2 rounded">Logout</button>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="p-6 text-center">
+        <h2 class="text-3xl font-bold text-purple-400">Your Profile</h2>
+        <div class="mt-6 bg-gray-800 p-6 rounded-lg">
+            <i class="fas fa-user-circle text-6xl text-gray-400"></i>
+            <h3 class="text-xl font-bold mt-2" id="username">User Name</h3>
+            <p class="text-gray-400 mt-1">Email: <span id="email">user@example.com</span></p>
+            <p class="text-gray-400 mt-1">Balance: <span class="text-green-400">₹50,000</span></p>
+        </div>
+    </section>
+
+    <!-- Fixed Bottom Navbar -->
+    <nav class="fixed bottom-0 left-0 w-full bg-gray-800 text-white flex justify-around p-4 border-t border-gray-700">
+        <a href="index.html" class="text-center">
+            <i class="fas fa-home text-2xl text-gray-300"></i>
+            <p class="text-sm text-gray-300">Home</p>
+        </a>
+        <a href="market.html" class="text-center">
+            <i class="fas fa-chart-line text-2xl text-gray-300"></i>
+            <p class="text-sm text-gray-300">Market</p>
+        </a>
+        <a href="trade.html" class="text-center">
+            <i class="fas fa-coins text-2xl text-gray-300"></i>
+            <p class="text-sm text-gray-300">Trade</p>
+        </a>
+        <a href="profile.html" class="text-center">
+            <i class="fas fa-user text-2xl text-purple-400"></i>
+            <p class="text-sm text-purple-400">Profile</p>
+        </a>
+    </nav>
+
+    <script>
+        // Check if user is logged in
+        function checkLogin() {
+            let user = localStorage.getItem("user");
+            if (!user) {
+                window.location.href = "login.html"; // Redirect to login
+            } else {
+                let userData = JSON.parse(user);
+                document.getElementById("username").innerText = userData.name || "User Name";
+                document.getElementById("email").innerText = userData.email || "user@example.com";
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("user");
+            window.location.href = "login.html";
+        }
+
+        // Run check on page load
+        checkLogin();
+    </script>
+
+</body>
+</html>
